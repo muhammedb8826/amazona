@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,4 +21,23 @@ header a {
   font-weight: bold;
   color: #ffffff;
   text-decoration: none;
+}
+main {
+  padding: 1rem;
+}
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product {
+  border: 1px solid #404040;
+  margin: 1rem;
+}
+.product img {
+  width: 100%;
+  max-width: 250px;
+}
+.product-info {
+  padding: 1rem;
 }
