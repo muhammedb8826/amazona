@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { getError } from '../utils';
 const ACTIONS = {
   FETCH_REQUEST: 'FETCH_REQUEST',
   FETCH_SUCCESS: 'FETCH_SUCCESS',
@@ -44,16 +47,16 @@ export default function ProductScreen() {
         const result = await axios.get(`/api/products/slug/${slug}`);
         dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: result.data });
       } catch (err) {
-        dispatch({ type: ACTIONS.FETCH_FAIL, payload: err.message });
+        dispatch({ type: ACTIONS.FETCH_FAIL, payload: getError(err) });
       }
     };
     fetchData();
   }, [slug]);
 
   return loading ? (
-    <div>Loading...</div>
+    <LoadingBox />
   ) : error ? (
-    <div>{error}</div>
+    <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
       <Row>
